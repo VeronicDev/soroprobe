@@ -207,16 +207,14 @@ func TestLoadRejectsUnknownKeys(t *testing.T) {
 	})
 
 	t.Run("unknown key in yaml", func(t *testing.T) {
-		path := writeConfigFile(t, "soroprobe.yaml", "rpc_url: \"https://rpc.example.com\"
-unknown_key: val\n")
+		path := writeConfigFile(t, "soroprobe.yaml", "rpc_url: \"https://rpc.example.com\"\nunknown_key: val\n")
 		_, err := config.Load(path)
 		require.Error(t, err)
 		assert.Contains(t, err.Error(), "not found")
 	})
 
 	t.Run("unknown key in yml", func(t *testing.T) {
-		path := writeConfigFile(t, "soroprobe.yml", "rpc_url: \"https://rpc.example.com\"
-unknown_key: val\n")
+		path := writeConfigFile(t, "soroprobe.yml", "rpc_url: \"https://rpc.example.com\"\nunknown_key: val\n")
 		_, err := config.Load(path)
 		require.Error(t, err)
 		assert.Contains(t, err.Error(), "not found")
